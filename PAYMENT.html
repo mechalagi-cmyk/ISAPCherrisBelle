@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  </head>
+
+  <body style="margin: 0; padding: 40px; color: #222; background: #fff; font-family: 'Times New Roman', serif;">
+
+    <div
+      style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 420px; gap: 40px; align-items: start;"
+    >
+
+      <!-- LEFT COLUMN -->
+      <div>
+
+        <h1 style="font-weight: 600; font-size: 38px; margin-bottom: 20px;">Payment</h1>
+
+        <!-- LIST AT THE TOP -->
+        <div style="background:#f7f7f7; padding:16px; border-radius:8px; margin-bottom:20px; font-size:15px;">
+          <h3 style="margin-top:0; color:#b75b73; font-size:17px;">Payment Instructions</h3>
+          <ol style="padding-left:20px; margin:0;">
+            <li>Choose your bank from the dropdown below.</li>
+            <li>Enter your bank account number correctly.</li>
+            <li>Write additional notes if needed.</li>
+            <li>Review all your information.</li>
+            <li>Click “Pay” to continue.</li>
+          </ol>
+        </div>
+
+        <!-- FORM -->
+        <form id="paymentForm"
+          style="background: #fafafa; padding: 18px; border-radius: 8px; display: flex; flex-direction: column; gap: 24px; box-shadow: 0 0 0 1px rgba(0,0,0,0.02) inset; max-width: 700px;"
+        >
+
+          <!-- BANK -->
+          <div>
+            <label style="font-size: 13px; color: #b75b73; display: block; margin-bottom: 6px;">Select Bank</label>
+            <select
+              id="bank"
+              name="bank"
+              style="padding: 16px; width: 100%; border: none; border-radius: 8px; background: #e9e9e9; font-size: 16px; outline: none;"
+            >
+              <option value="">-- Choose a Bank --</option>
+              <option value="BCA">Bank Central Asia (BCA)</option>
+              <option value="Mandiri">Bank Mandiri</option>
+              <option value="BRI">Bank Rakyat Indonesia (BRI)</option>
+              <option value="BNI">Bank Negara Indonesia (BNI)</option>
+              <option value="CIMB">CIMB Niaga</option>
+            </select>
+            <small id="bankError" style="color:red; font-size:13px;"></small>
+          </div>
+
+          <!-- ACCOUNT NUMBER -->
+          <div>
+            <label style="font-size: 13px; color: #b75b73; display: block; margin-bottom: 6px;">Bank Account Number</label>
+            <input
+              type="text"
+              id="account"
+              name="account"
+              placeholder="Enter your bank account number"
+              style="padding: 16px; width: 100%; border: none; border-radius: 8px; background: #e9e9e9; font-size: 16px; outline: none;"
+            />
+            <small id="accError" style="color:red; font-size:13px;"></small>
+          </div>
+
+          <!-- TEXTAREA -->
+          <div>
+            <label style="font-size: 13px; color: #b75b73; display: block; margin-bottom: 6px;">
+              Payment Notes
+            </label>
+            <textarea
+              id="notes"
+              name="notes"
+              rows="4"
+              placeholder="Write any notes about your payment..."
+              style="padding: 16px; width: 100%; border: none; border-radius: 8px; background: #e9e9e9; font-size: 16px; outline: none; resize: vertical;"
+            ></textarea>
+          </div>
+
+          <!-- PAY BUTTON -->
+          <div>
+            <button
+              id="payBtn"
+              type="submit"
+              style="background-color: #b35e70; color: white; padding: 10px 25px; border-radius: 8px; border:none; font-family: 'Georgia', serif; font-size: 18px; cursor:pointer;"
+            >
+              Pay
+            </button>
+            <div style="font-size: 13px; color: #666; margin-top: 8px;">
+              Make sure your data is correct before payment.
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- RIGHT COLUMN  -->
+      <div style="display: flex; justify-content: center; align-items: flex-start;">
+        <img
+          id="brandImg"
+          src="https://i.pinimg.com/736x/f1/8b/dc/f18bdcde91433a77e282b836cb410430.jpg"
+          alt="brand image"
+          style="max-width: 420px; width: 100%; border-radius: 8px;"
+        />
+      </div>
+
+    </div>
+
+    <!-- JAVASCRIPT + JQUERY INTERACTIONS -->
+    <script>
+
+      //  Focus Event 
+      $("input, select, textarea").on("focus", function(){
+        $(this).css("background", "#fff7fa");
+      }).on("blur", function(){
+        $(this).css("background", "#e9e9e9");
+      });
+
+      // Change Event 
+      $("#bank").on("change", function(){
+        $("#bankError").text("");
+      });
+
+      //  Keypress Event
+      $("#account").on("keypress", function(){
+        let value = $(this).val();
+        if(!/^[0-9]*$/.test(value)){
+          $("#accError").text("Account number must be digits only");
+        } else {
+          $("#accError").text("");
+        }
+      });
+
+      //  Mousemove Event 
+      $("#brandImg").on("mousemove", function(){
+        $(this).css("transform","scale(1.03)").css("transition","0.3s");
+      }).on("mouseleave", function(){
+        $(this).css("transform","scale(1)");
+      });
+
+      //  Click Event + Form Validation
+      $("#paymentForm").on("submit", function(e){
+        e.preventDefault();
+
+        let bank = $("#bank").val();
+        let account = $("#account").val();
+        let valid = true;
+
+        if(bank === ""){
+          $("#bankError").text("Please select a bank");
+          valid = false;
+        }
+
+        if(account.length < 5 || !/^[0-9]+$/.test(account)){
+          $("#accError").text("Enter a valid account number (min 5 digits)");
+          valid = false;
+        }
+
+        if(valid){
+          window.location.href = "PAYMENTSUCCES.html";
+        }
+      });
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop - Pink Cardigan</title>
+  <link rel="stylesheet" href="KATALOG-style.css">
+
+  
+  <style>
+    .payment-wrap {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-family: "Times New Roman", serif;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-cart {
+      background: #f7b1c3;
+      color: #6b2d40;
+      box-shadow: 0 4px 12px rgba(179,94,112,0.12);
+    }
+
+    .btn-cart:hover { background:#f3a6bd; }
+
+    .btn-checkout {
+      background: #812b46;
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+
+    .btn-checkout:hover { background:#6e233e; }
+
+    
+    .icon-cart {
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      vertical-align: middle;
+      fill: currentColor;
+    }
+
+    
+    .small-note {
+      font-size: 13px;
+      color: #4a2b33;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <h2 class="logo">CompKids Project</h2>
+    <nav>
+      <ul>
+        <li><a href="WHOWEARE.html">Who we are</a></li>
+        <li><a href="CONTACT.html">Contact</a></li>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="shop-title">Shop</h1>
+
+    <section class="content">
+
+      <div class="card" data-product-id="pink-cardigan">
+        <div class="image-wrap">
+          <img id="productImage" src="https://i.pinimg.com/736x/69/09/28/690928efb7bce2ab96dca2ca601ecdb4.jpg" alt="Pink Cardigan" style="max-width:100%; border-radius:8px;">
+        </div>
+        <div class="card-footer">
+          <div>
+            <h3 class="product-name">Pink Cardigan</h3>
+            <p class="available">Available Size:</p>
+            <ul class="tiny">
+              <li>S : Ld 76 - Lp 58 - Lb 60</li>
+              <li>M : Ld 80 - Lp 59 - Lb 62</li>
+              <li>L : Ld 84 - Lp 60 - Lb 64</li>
+            </ul>
+          </div>
+          <div class="price" data-price="139000">IDR 139</div>
+        </div>
+      </div>
+
+
+      <div class="details">
+        <p class="desc">
+          A soft pink cardigan made from comfortable knit fabric, featuring a simple yet elegant design with front buttons and a cozy fit — perfect for layering in any season.
+        </p>
+
+        <div class="box box-table">
+          <table class="size-table">
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>Ld</th>
+                <th>Lp</th>
+                <th>Lb</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>S</td><td>76</td><td>58</td><td>60</td></tr>
+              <tr><td>M</td><td>80</td><td>59</td><td>62</td></tr>
+              <tr><td>L</td><td>84</td><td>60</td><td>64</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="options-row" style="display:flex; gap:20px; flex-wrap:wrap; margin-top:14px;">
+          <div class="box box-size">
+            <p class="box-title">Select Size</p>
+            <form id="sizeForm">
+              <label><input type="radio" name="size" value="S" checked> S</label><br>
+              <label><input type="radio" name="size" value="M"> M</label><br>
+              <label><input type="radio" name="size" value="L"> L</label>
+            </form>
+          </div>
+
+          <div class="box box-accessories">
+            <p class="box-title">Select Accessories</p>
+            <form id="accForm">
+              <label><input type="checkbox" value="Ribbon"> Ribbon</label><br>
+              <label><input type="checkbox" value="Ruffled Collar"> Ruffled Collar</label><br>
+              <label><input type="checkbox" value="Extra Buttons"> Extra Buttons</label><br>
+              <label><input type="checkbox" value="Cute Brooch"> Cute Brooch</label>
+            </form>
+          </div>
+        </div>
+
+        <div class="payment-wrap">
+          <!-- Cart button  -->
+          <a href="basket.html" id="addToCartBtn" class="btn btn-cart" aria-label="Add to cart">
+            <!-- simple cart SVG icon -->
+            <svg class="icon-cart" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M7 4h-2l-1 2v1h2l3.6 7.59-1.35 2.45C8.89 17.37 9.5 18.5 10.5 18.5h8v-2h-7.42c-.14 0-.25-.08-.3-.2l.03-.06L17.1 10H20V8h-3.1l-1.6-3H7zm-1 16a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm12 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/>
+            </svg>
+            Add to Cart
+          </a>
+
+          <!-- Checkout button -->
+          <a href="payment.html" class="btn btn-checkout" aria-label="Proceed to checkout">Checkout</a>
+
+          <span id="addedNote" class="small-note" style="display:none;">Added to cart ✓</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  
+  <script>
+    (function(){
+      
+      function readCart() {
+        try {
+          const raw = localStorage.getItem('cart');
+          return raw ? JSON.parse(raw) : [];
+        } catch(e) {
+          return [];
+        }
+      }
+      function writeCart(cart) {
+        try {
+          localStorage.setItem('cart', JSON.stringify(cart));
+        } catch(e) {
+          console.error('Failed to save cart', e);
+        }
+      }
+
+     
+      const addBtn = document.getElementById('addToCartBtn');
+      const addedNote = document.getElementById('addedNote');
+
+      addBtn.addEventListener('click', function(evt){
+        evt.preventDefault(); 
+
+        // product info
+        const card = document.querySelector('.card');
+        const productId = card.getAttribute('data-product-id') || 'product-1';
+        const name = document.querySelector('.product-name').textContent.trim();
+        const desc = document.querySelector('.desc').textContent.trim();
+        const img = document.getElementById('productImage').getAttribute('src');
+        const priceAttr = document.querySelector('.price').getAttribute('data-price');
+        const price = priceAttr ? Number(priceAttr) : 0; // price in IDR (e.g., 139000)
+
+        // selected size
+        const sizeEl = document.querySelector('input[name="size"]:checked');
+        const size = sizeEl ? sizeEl.value : 'S';
+
+        // selected accessories (array)
+        const accNodes = document.querySelectorAll('#accForm input[type="checkbox"]:checked');
+        const accessories = Array.from(accNodes).map(n => n.value).sort(); // sorted for consistent key
+
+        
+        const qty = 1;
+
+        // build item key to merge duplicates if same product + size + accessories
+        const key = productId + '|' + size + '|' + JSON.stringify(accessories);
+
+        // load cart
+        const cart = readCart();
+
+        // try find existing item
+        const idx = cart.findIndex(it => it._key === key);
+        if (idx > -1) {
+          // increment qty
+          cart[idx].qty = Number(cart[idx].qty) + qty;
+        } else {
+          // push new item
+          const item = {
+            _key: key,
+            id: productId,
+            name: name,
+            desc: desc,
+            img: img,
+            price: price,
+            size: size,
+            accessories: accessories,
+            qty: qty
+          };
+          cart.push(item);
+        }
+
+        
+        writeCart(cart);
+
+        // feedback
+        addedNote.style.display = 'inline';
+        const originalText = addBtn.innerHTML;
+        addBtn.innerHTML = 'Added ✓';
+
+        
+        setTimeout(function(){
+          
+          addBtn.innerHTML = originalText;
+          
+          window.location.href = 'basket.html';
+        }, 700);
+      });
+    })();
+  </script>
+</body>
+</html>

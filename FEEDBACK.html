@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Times New Roman", serif;
+            background-color: #f6f0f2;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 60px;
+            background: rgba(251, 251, 251, 0.7);
+            backdrop-filter: blur(6px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #b35e70;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #b35e70;
+            font-size: 18px;
+            font-family: 'Georgia', serif;
+        }
+
+        .navbar a:hover {
+            color: #eee9eb;
+        }
+
+        .feedback-wrapper {
+            margin-top: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 42px;
+            color: #b35e70;
+            margin-bottom: 20px;
+        }
+
+        .feedback-box {
+            background: #ffffff;
+            padding: 25px 35px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            width: 450px;
+            color: #b35e70;
+            font-size: 18px;
+            line-height: 28px;
+        }
+
+        select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #b35e70;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-family: "Times New Roman", serif;
+        }
+
+        button {
+            margin-top: 20px;
+            background: #b35e70;
+            color: white;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #954d5f;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">CompKids Project</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="LOGIN.html">Login</a></li>
+            <li><a href="SHOP.html">Shop</a></li>
+            <li><a href="CONTACT.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="feedback-wrapper">
+    <h1>Feedback Form</h1>
+
+    <div class="feedback-box">
+        <form id="feedbackForm">
+            <label>Rate your experience:</label>
+            <select id="rating">
+                <option value="">Choose rating...</option>
+                <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                <option value="4">⭐⭐⭐⭐ Good</option>
+                <option value="3">⭐⭐⭐ Average</option>
+                <option value="2">⭐⭐ Poor</option>
+                <option value="1">⭐ Very Poor</option>
+            </select>
+            <span id="ratingError" class="error">Please choose a rating.</span>
+
+            <br><br>
+
+            <label>Feedback (optional):</label>
+            <textarea id="message" placeholder="Write your feedback..."></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+<script src="jQuery.js/jquery-3.7.1.min.js"></script>
+
+<script>
+    $("#feedbackForm").submit(function(e){
+        e.preventDefault();
+
+        let rating = $("#rating").val();
+
+        if(rating === ""){
+            $("#ratingError").show();
+            return;
+        } else {
+            $("#ratingError").hide();
+        }
+
+        alert("Thank you for your feedback! 💗");
+        $("#feedbackForm")[0].reset();
+    });
+</script>
+
+</body>
+</html>

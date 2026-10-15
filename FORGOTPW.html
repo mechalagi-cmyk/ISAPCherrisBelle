@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Forgot Password — CherrisBelle</title>
+  <style>
+    * { box-sizing: border-box; }
+    html,body { height: 100%; margin: 0; }
+    body {
+      font-family: "Times New Roman", serif;
+      background: #fff;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      padding: 28px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      color: #812b46;
+      font-size: 22px;
+    }
+
+    p.lead {
+      margin: 0 0 18px;
+      color: #6b4a50;
+      font-size: 14px;
+    }
+
+    form { display: grid; gap: 12px; }
+    label {
+      font-size: 14px;
+      color: #4a2b33;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #e6d7db;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: "Times New Roman", serif;
+    }
+
+    input:focus {
+      border-color: #d47a8c;
+      box-shadow: 0 0 0 4px rgba(179,94,112,0.08);
+      outline: none;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: #b35e70;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-family: "Times New Roman", serif;
+    }
+
+    .muted { font-size: 13px; color: #7a5b61; text-align: center; margin-top: 8px; }
+
+    .message {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+    .message.error { color: #b04a4a; }
+    .message.success { color: #2f7a3e; }
+
+    @media (max-width: 480px) {
+      .card { padding: 20px; border-radius: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="card" role="main" aria-labelledby="title">
+    <h2 id="title">Reset Your Password</h2>
+    <p class="lead">Enter your registered username and email, then set a new password. You will be redirected to the login page on success.</p>
+
+    <form id="forgotForm" autocomplete="on" novalidate>
+      <div>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required placeholder="Your registered username">
+      </div>
+
+      <div>
+        <label for="email">Email Address</label>
+        <input id="email" name="email" type="email" required placeholder="your@email.com">
+      </div>
+
+      <div>
+        <label for="newpass">New Password</label>
+        <input id="newpass" name="newpass" type="password" required minlength="6" placeholder="Minimum 6 characters">
+      </div>
+
+      <button type="submit" class="btn">Save New Password</button>
+
+      <div id="msg" class="message" role="status" aria-live="polite" style="display:none;"></div>
+
+      <p class="muted">Remembered your account? <a href="LOGIN.html">Back to Login</a></p>
+    </form>
+  </main>
+
+  <!--jQuery-->
+  <script src="jQuery.js/jquery-3.7.1.min.js"></script>
+
+  
+  <script>
+    $(function() {
+      var $form = $('#forgotForm');
+      var $msg  = $('#msg');
+
+      function showMessage(text, type) {
+        $msg.removeClass('error success').addClass(type).text(text).show();
+      }
+
+      $form.on('submit', function(e) {
+        e.preventDefault();
+        $msg.hide().text('');
+
+        var username = $.trim($('#username').val());
+        var email    = $.trim($('#email').val());
+        var newpass  = $('#newpass').val();
+
+        if (!username || !email || !newpass) {
+          showMessage('Please fill all fields.', 'error');
+          return;
+        }
+        if (newpass.length < 6) {
+          showMessage('Password must be at least 6 characters.', 'error');
+          return;
+        }
+
+        var raw = localStorage.getItem('registeredUser');
+        if (!raw) {
+          showMessage('No registered account found. Please sign up first.', 'error');
+          return;
+        }
+
+        var reg;
+        try {
+          reg = JSON.parse(raw);
+        } catch (err) {
+          showMessage('Stored registration data is corrupted. Please sign up again.', 'error');
+          return;
+        }
+
+        
+        if (!reg.username || !reg.email) {
+         
+          if (reg.username !== username) {
+            showMessage('Username not found.', 'error');
+            return;
+          }
+        } else {
+          if (reg.username !== username || reg.email !== email) {
+            showMessage('Username and email do not match our records.', 'error');
+            return;
+          }
+        }
+
+        
+        reg.password = newpass;
+        try {
+          localStorage.setItem('registeredUser', JSON.stringify(reg));
+        } catch (err) {
+          showMessage('Failed to update password (storage error).', 'error');
+          return;
+        }
+
+        showMessage('Password updated successfully. Redirecting to login...', 'success');
+
+        
+        setTimeout(function() {
+          window.location.href = 'LOGIN.html';
+        }, 900);
+      });
+    });
+  </script>
+</body>
+</html>

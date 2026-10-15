@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login — CherrisBelle</title>
+  <style>
+    * { box-sizing: border-box; }
+    html,body { height: 100%; margin: 0; }
+    body {
+      font-family: "Times New Roman", serif;
+      background: linear-gradient(180deg, #fff 0%, #fff 65%, #fde8ec 100%);
+      color: #333;
+    }
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 5vw; background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(6px); position: sticky; top:0; z-index:50;
+    }
+    .logo { font-size: 20px; color: #b35e70; font-weight: bold; }
+    .navbar ul { list-style:none; display:flex; gap:22px; margin:0; padding:0; }
+    .navbar a { color:#000; text-decoration:none; font-size:15px; font-family:"Times New Roman", serif; transition:color .2s; }
+    .navbar a:hover { color:#b35e70; }
+    .page {
+      min-height: calc(100vh - 60px); display:flex; justify-content:center; align-items:center;
+      padding:4vw; position:relative;
+    }
+    .card {
+      position: relative; z-index:20; background:white; padding:28px; border-radius:14px;
+      box-shadow:0 8px 30px rgba(0,0,0,0.06); width:100%; max-width:420px;
+    }
+    form { display:grid; gap:14px; }
+    label { font-size:14px; color:#4a2b33; margin-bottom:3px; display:block; }
+    input[type="text"], input[type="password"] {
+      width:100%; padding:10px 12px; border:1px solid #e6d7db; border-radius:6px;
+      font-size:15px; font-family:"Times New Roman", serif;
+    }
+    input:focus { border-color:#d47a8c; box-shadow:0 0 0 3px rgba(179,94,112,0.12); outline:none; }
+    .btn-login { padding:12px; width:100%; background:#b35e70; color:#fff; border:none; border-radius:6px; font-size:16px; cursor:pointer; font-family:"Times New Roman", serif; }
+    .hint { margin-top:8px; font-size:13px; color:#6b4a50; text-align:center; }
+    .error { color:#b04a4a; font-size:14px; text-align:center; margin-top:8px; }
+    .success { color:#2f7a3e; font-size:14px; text-align:center; margin-top:8px; }
+    .forgot { text-align:center; margin-top:10px; }
+    .forgot a { color:#b35e70; font-size:14px; text-decoration:none; }
+    .forgot a:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+
+  <!-- first try CDN; if blocked, fallback ke local file -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    if (typeof jQuery === 'undefined') {
+      var s = document.createElement('script');
+      s.src = 'jQuery.js/jquery-3.7.1.min.js';
+      s.onload = function(){ console.log('Loaded local jQuery fallback'); };
+      s.onerror = function(){ console.error('Both CDN and local jQuery failed to load.'); };
+      document.head.appendChild(s);
+    } else {
+      console.log('jQuery loaded from CDN');
+    }
+  </script>
+
+  <header class="navbar">
+    <div class="logo">CompKids Project</div>
+    <nav>
+      <ul>
+        <li><a href="WHOWEARE.html">Who we are</a></li>
+        <li><a href="CONTACT.html">Contact</a></li>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div class="pink-panel" aria-hidden="true"></div>
+
+    <section class="card" aria-labelledby="loginTitle">
+      <h2 id="loginTitle">Login</h2>
+
+      <form id="loginForm" autocomplete="on" novalidate>
+        <p class="forgot"><a href="FORGOTPW.html" id="forgotLink">Forgot Password?</a></p>
+
+        <div>
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" required placeholder="Your username">
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required placeholder="Your password">
+        </div>
+
+        <button type="submit" class="btn-login">Login</button>
+
+        <div id="msg" role="status" aria-live="polite"></div>
+
+        <p class="hint">You must use a username that has been registered before.</p>
+      </form>
+    </section>
+  </main>
+
+  <script>
+  (function waitForJquery(){
+    if (typeof jQuery === 'undefined') {
+      setTimeout(waitForJquery, 50);
+      return;
+    }
+
+    $(function() {
+      var $form = $('#loginForm');
+      var $msg  = $('#msg');
+
+      $form.on('submit', function(e) {
+        e.preventDefault();
+        $msg.removeClass('error success').text('');
+
+        var inputUser = $.trim($('#username').val() || '');
+        var inputPass = $('#password').val() || '';
+
+        try {
+          var raw = localStorage.getItem('registeredUser');
+        } catch(err) {
+          console.error('Error reading localStorage:', err);
+          $msg.addClass('error').text('Tidak bisa mengakses penyimpanan. Cek pengaturan browser.');
+          return;
+        }
+
+        if (!raw) {
+          $msg.addClass('error').text('Akun belum terdaftar. Silakan Sign Up.');
+          console.log('localStorage: registeredUser = null');
+          return;
+        }
+
+        var reg;
+        try {
+          reg = JSON.parse(raw);
+        } catch (err) {
+          console.error('JSON parse error stored registration:', err, raw);
+          $msg.addClass('error').text('Data terdaftar rusak. Silakan daftar ulang.');
+          return;
+        }
+
+        if (inputUser !== reg.username) {
+          $msg.addClass('error').text('Cannot find the Username.');
+          console.log('Login fail: username mismatch', {inputUser: inputUser, storedUser: reg.username});
+          return;
+        }
+
+        if (inputPass !== reg.password) {
+          $msg.addClass('error').text('Password salah.');
+          console.log('Login fail: wrong password');
+          return;
+        }
+
+        $msg.addClass('success').text('Login berhasil — mengalihkan...');
+
+        setTimeout(function() {
+          var a = document.createElement('a');
+          a.href = 'SHOP.html';
+          a.style.display = 'none';
+          document.body.appendChild(a);
+
+          try {
+            a.click();
+            setTimeout(function(){
+              if (location.pathname && !location.pathname.toLowerCase().endsWith('shop.html')) {
+                console.warn('Anchor click did not navigate — using window.location as fallback');
+                window.location.href = 'SHOP.html';
+              }
+            }, 500);
+          } catch(err) {
+            console.error('Anchor click failed, using window.location.href fallback', err);
+            window.location.href = 'SHOP.html';
+          }
+
+        }, 600);
+      });
+
+      console.log('Login script ready. Check localStorage.getItem("registeredUser") to verify stored account.');
+
+
+      //  CLICK EVENT 
+      document.querySelector(".btn-login").addEventListener("click", function() {
+        console.log("Click Event: Login button clicked");
+      });
+
+      //  CHANGE EVENT 
+      document.getElementById("username").addEventListener("change", function() {
+        console.log("Change Event: Username field changed →", this.value);
+      });
+
+      //  MOUSEMOVE EVENT 
+      document.body.addEventListener("mousemove", function(e) {
+        
+      });
+
+      //  KEYPRESS EVENT 
+      document.getElementById("password").addEventListener("keypress", function(e) {
+        console.log("Keypress Event: Key =", e.key);
+      });
+
+      // FOCUS EVENT
+      document.getElementById("username").addEventListener("focus", function() {
+        console.log("Focus Event: Username input focused");
+      });
+
+    });
+  })();
+  </script>
+
+</body>
+</html>

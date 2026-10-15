@@ -1,0 +1,178 @@
+body {
+  margin: 0;
+  font-family: "Times New Roman", serif;
+  background-color: white;
+  color: #333;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 80px;
+}
+
+.logo {
+  color: #95576c;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  color: #95576c;
+}
+
+.user-icon {
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 120px;
+}
+
+.left {
+  flex: 1;
+}
+
+.left h1 {
+  font-size: 70px;
+  color: #812b46;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 22px;
+  color: #333;
+  margin: 0;
+}
+
+.subtitle .pink {
+  color: #c86b84;
+  font-style: italic;
+}
+
+.subtitle .grace {
+  color: #95576c;
+  font-style: italic;
+}
+
+.right {
+  position: relative;
+  text-align: center;
+}
+
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.login-btn {
+  background-color: #d47a8c;
+  color: white;
+  border: none;
+  padding: 10px 35px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.login-btn:hover {
+  background-color: #b35e70;
+}
+
+.picture4 {
+  width: 400px;
+  height: auto;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .picture4 {
+    width: 80%;
+    margin-top: 20px;
+  }
+
+  .login-btn {
+    top: -40px;
+  }
+}
+
+/* RESPONSIVE FOR LAPTOP & TABLET */
+@media (max-width: 1024px) {
+  .content {
+    padding: 20px 40px;
+  }
+
+  .left h1 {
+    font-size: 40px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+
+  .image-wrapper img {
+    width: 350px;
+  }
+
+  .login-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+}
+
+/* RESPONSIVE FOR MOBILE */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .left h1 {
+    font-size: 32px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .image-wrapper img {
+    width: 250px;
+  }
+
+  .login-btn {
+    font-size: 14px;
+    padding: 8px 18px;
+  }
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Times New Roman", serif;
+            background-color: #f6f0f2;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 60px;
+            background: rgba(251, 251, 251, 0.7);
+            backdrop-filter: blur(6px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #b35e70;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #b35e70;
+            font-size: 18px;
+            font-family: 'Georgia', serif;
+        }
+
+        .navbar a:hover {
+            color: #eee9eb;
+        }
+
+        .contact-wrapper {
+            margin-top: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 42px;
+            color: #b35e70;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 20px;
+            text-align: center;
+            color: #b35e70;
+            max-width: 700px;
+            line-height: 32px;
+            margin-bottom: 40px;
+        }
+
+        .info-box {
+            background: #ffffff;
+            padding: 25px 35px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            width: 420px;
+            margin-bottom: 25px;
+            color: #b35e70;
+            font-size: 18px;
+            line-height: 28px;
+        }
+
+        .info-box strong {
+            font-size: 20px;
+            color: #9f4e60;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #b35e70;
+            color: white;
+            border-radius: 8px;
+            font-size: 18px;
+            text-decoration: none;
+            margin-top: 15px;
+        }
+
+        .btn-contact:hover {
+            background: #954d5f;
+        }
+
+        .social-links {
+            margin-top: 25px;
+            display: flex;
+            gap: 35px;
+            font-size: 20px;
+        }
+
+        .social-links a {
+            color: #b35e70;
+            text-decoration: none;
+            font-family: "Georgia", serif;
+        }
+
+        .social-links a:hover {
+            color: #9c4b5d;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">CompKids Project</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="LOGIN.html">Login</a></li>
+                <li><a href="SHOP.html">Shop</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="contact-wrapper">
+        <h1>Contact Us</h1>
+
+        <p class="description">
+            If you have any questions about our products, pickup schedule, or shop information, 
+            feel free to reach us through the contact details below.
+        </p>
+
+        <div class="info-box">
+            <strong>📍 Address</strong><br>
+            Jababeka Education Park<br>
+            Jl. Ki Hajar Dewantara<br>
+            Kota Jababeka, Cikarang Utara<br>
+            Bekasi, Jawa Barat, 17550
+        </div>
+
+        <div class="info-box">
+            <strong>📞 Contact</strong><br>
+            Email: compkids@gmail.com<br>
+            WhatsApp: 0895-1314-0090<br>
+            Open Hours: 09.00 – 17.00
+            <br>
+            <a class="btn-contact" href="https://wa.me/6289513140090" target="_blank">
+                Chat via WhatsApp
+            </a>
+        </div>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/cherissabelle" target="_blank">Instagram</a>
+            <a href="https://tr.ee/ormuEG7ykr" target="_blank">Shopee</a>
+        </div>
+        <a href="FEEDBACK.html" class="btn-contact" style="margin-top: 30px;">
+    Give Feedback ⭐
+</a>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up — CherrisBelle</title>
+
+  <style>
+    * { box-sizing: border-box; }
+    html,body { height: 100%; margin: 0; }
+    body {
+      font-family: "Times New Roman", serif;
+      background: linear-gradient(180deg, #fff 0%, #fff 65%, #fde8ec 100%);
+      color: #333;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 5vw;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .logo { font-size: 20px; color: #b35e70; font-weight: bold; }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 22px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar a {
+      color: #000;
+      text-decoration: none;
+      font-size: 15px;
+      transition: color .2s;
+      font-family: "Times New Roman", serif;
+    }
+    .navbar a:hover { color: #b35e70; }
+
+    .page {
+      min-height: calc(100vh - 60px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4vw;
+      position: relative;
+    }
+
+    .pink-panel {
+      position: absolute;
+      right: 6vw;
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(420px, 40vw);
+      height: min(480px, 60vh);
+      background: #f7b1c3;
+      border-radius: 22px;
+      box-shadow: 0 10px 30px rgba(135, 40, 60, 0.12);
+      z-index: 5;
+    }
+
+    .signup-wrap {
+      width: min(900px, 94vw);
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 40px;
+      z-index: 10;
+    }
+
+    .intro h1 {
+      font-size: clamp(28px, 6vw, 46px);
+      color: #812b46;
+    }
+
+    .intro p {
+      font-size: 18px;
+      color: #4a2b33;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      color: #812b46;
+    }
+
+    form { display: grid; gap: 14px; }
+
+    label {
+      font-size: 14px;
+      color: #4a2b33;
+      margin-bottom: 3px;
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #e6d7db;
+      border-radius: 6px;
+      font-size: 15px;
+      font-family: "Times New Roman", serif;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #d47a8c;
+      box-shadow: 0 0 0 3px rgba(179,94,112,0.12);
+    }
+
+    .btn-submit {
+      padding: 12px;
+      width: 100%;
+      background: #b35e70;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 6px;
+      font-family: "Times New Roman", serif;
+    }
+
+    .terms {
+      margin-top: 4px;
+      font-size: 13px;
+      color: #6b4a50;
+      text-align: center;
+    }
+
+    @media (max-width: 880px) {
+      .signup-wrap { grid-template-columns: 1fr; }
+      .pink-panel { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="logo">CompKids Project</div>
+    <nav>
+      <ul>
+        <li><a href="WHOWEARE.html">Who we are</a></li>
+        <li><a href="CONTACT.html">Contact</a></li>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div class="pink-panel" aria-hidden="true"></div>
+
+    <div class="signup-wrap">
+      <div class="intro">
+        <h1>Create Your Account</h1>
+        <p>Register now to access exclusive features, offers, and updates.</p>
+      </div>
+
+      <section class="card">
+        <h2>Sign Up</h2>
+
+        <form id="signupForm" novalidate>
+
+          <div>
+            <label for="fullname">Full Name</label>
+            <input id="fullname" type="text" required placeholder="Example: Anna Marie">
+          </div>
+
+          <div>
+            <label for="username">Username (no spaces)</label>
+            <input id="username" type="text" pattern="^[^\s]+$" required placeholder="example_username">
+          </div>
+
+          <div>
+            <label for="email">Email Address</label>
+            <input id="email" type="email" required placeholder="example@email.com">
+          </div>
+
+          <div>
+            <label for="password">Password</label>
+            <input id="password" type="password" minlength="6" required placeholder="Minimum 6 characters">
+          </div>
+
+          <div>
+            <label for="confirm">Confirm Password</label>
+            <input id="confirm" type="password" minlength="6" required placeholder="Retype password">
+          </div>
+
+          <button class="btn-submit" type="submit">Sign Up</button>
+
+          <p class="terms">
+            By signing up, you agree to our <b>Terms and Conditions</b>.
+          </p>
+
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      var formEl = document.getElementById('signupForm');
+      
+      if (!formEl) return;
+
+      $('#signupForm').on('submit', function(e) {
+        e.preventDefault();
+
+        var fullname = $('#fullname').val() || '';
+        var username = $('#username').val() || '';
+        var email = $('#email').val() || '';
+        var pass = $('#password').val() || '';
+        var confirm = $('#confirm').val() || '';
+
+        fullname = fullname.trim();
+        username = username.trim();
+        email = email.trim();
+
+        if (!fullname || !username || !email || !pass) {
+          alert('Please fill in all required fields.');
+          return;
+        }
+
+        if (pass !== confirm) {
+          alert('Password and confirmation do not match.');
+          return;
+        }
+
+        var data = {
+          fullname: fullname,
+          username: username,
+          email: email,
+          password: pass
+        };
+
+        window.registeredUser = data;
+        
+        console.log('User registered:', data);
+        alert('Registration successful! Redirecting to shop...');
+        window.location.href = 'SHOP.html';
+
+      });
+    });
+  </script>
+</body>
+</html>

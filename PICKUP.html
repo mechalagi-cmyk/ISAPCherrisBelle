@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickup Schedule</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Times New Roman", serif;
+            background-image: url('https://i.pinimg.com/736x/61/55/71/615571a2a58e5d0a55df9bdc8b696df0.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pickup-box {
+            background: rgba(255,255,255,0.9);
+            padding: 35px 45px;
+            border-radius: 15px;
+            width: 420px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            text-align: center;
+            color: #b35e70;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #b35e70;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            background: #e7e7e7;
+            margin-top: 5px;
+            margin-bottom: 18px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #b35e70;
+            color: white;
+            font-size: 17px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #98465a;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-top: -12px;
+            margin-bottom: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="pickup-box">
+        <h2>Pickup Schedule</h2>
+
+        <form id="pickupForm">
+
+            <label>Name</label>
+            <input type="text" id="name">
+            <div class="error" id="err-name">Name cannot be empty</div>
+
+            <label>Pickup Date</label>
+            <input type="date" id="date">
+            <div class="error" id="err-date">Please choose a valid date</div>
+
+            <label>Pickup Time</label>
+            <select id="time">
+                <option value="">-- Select Time --</option>
+                <option>09:00 - 10:00</option>
+                <option>10:00 - 11:00</option>
+                <option>12:00 - 13:00</option>
+                <option>13:00 - 14:00</option>
+                <option>15:00 - 16:00</option>
+            </select>
+            <div class="error" id="err-time">Please choose a pickup time</div>
+
+            <label>Notes (optional)</label>
+            <textarea id="notes" rows="3" placeholder="Write a short note..."></textarea>
+
+            <button type="submit">Confirm Pickup</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+           
+            let today = new Date().toISOString().split("T")[0];
+            $("#date").attr("min", today);
+
+           
+            $("#pickupForm").submit(function (e) {
+                e.preventDefault();
+
+                let isValid = true;
+
+                
+                if ($("#name").val().trim() === "") {
+                    $("#err-name").show();
+                    isValid = false;
+                } else {
+                    $("#err-name").hide();
+                }
+
+                
+                if ($("#date").val() === "") {
+                    $("#err-date").text("Date cannot be empty").show();
+                    isValid = false;
+                } else if ($("#date").val() < today) {
+                    $("#err-date").text("Date cannot be earlier than today").show();
+                    isValid = false;
+                } else {
+                    $("#err-date").hide();
+                }
+
+                
+                if ($("#time").val() === "") {
+                    $("#err-time").show();
+                    isValid = false;
+                } else {
+                    $("#err-time").hide();
+                }
+
+                // If all valid → success
+                if (isValid) {
+
+                    alert("Pickup scheduled successfully!");
+
+                    // Reset form
+                    $("#pickupForm")[0].reset();
+                    $(".error").hide();
+                    $("input, select, textarea").blur();
+
+                    
+                    if ($("#backBtn").length === 0) {
+                        $(".pickup-box").append(`
+                            <a id="backBtn" href="index.html"
+                               style="
+                                  display:block;
+                                  margin-top:20px;
+                                  padding:12px;
+                                  text-align:center;
+                                  background:#b35e70;
+                                  color:white;
+                                  border-radius:8px;
+                                  text-decoration:none;
+                                  font-size:18px;
+                               ">
+                                Back to Home
+                            </a>
+                        `);
+                    }
+                }
+
+            }); 
+        }); 
+    </script>
+
+</body>
+</html>
