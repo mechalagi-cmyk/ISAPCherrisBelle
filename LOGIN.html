@@ -157,21 +157,21 @@
 
         setTimeout(function() {
           var a = document.createElement('a');
-          a.href = 'SHOP.html';
+          a.href = 'KATALOG.html';
           a.style.display = 'none';
           document.body.appendChild(a);
 
           try {
             a.click();
             setTimeout(function(){
-              if (location.pathname && !location.pathname.toLowerCase().endsWith('shop.html')) {
+              if (location.pathname && !location.pathname.toLowerCase().endsWith('katalog.html')) {
                 console.warn('Anchor click did not navigate — using window.location as fallback');
-                window.location.href = 'SHOP.html';
+                window.location.href = 'KATALOG.html';
               }
             }, 500);
           } catch(err) {
             console.error('Anchor click failed, using window.location.href fallback', err);
-            window.location.href = 'SHOP.html';
+            window.location.href = 'KATALOG.html';
           }
 
         }, 600);
