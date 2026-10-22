@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -7,162 +8,223 @@
 
   <style>
     * { box-sizing: border-box; }
-    html,body { height:100%; margin:0; font-family: "Times New Roman", serif; background:#fff; color:#333; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: "Times New Roman", serif;
+      background: #fff;
+      color: #333;
+    }
+
     .container {
       max-width: 1100px;
       margin: 40px auto;
       padding: 20px;
     }
 
-    
     .top {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
       margin-bottom: 18px;
     }
-    .brand { font-size:22px; color:#812b46; font-weight:700; }
-    .breadcrumb { font-size:14px; color:#6b4a50; }
 
-    
+    .brand {
+      font-size: 22px;
+      color: #812b46;
+      font-weight: 700;
+    }
+
+    .breadcrumb {
+      font-size: 14px;
+      color: #6b4a50;
+    }
+
     .card {
       background: rgba(255,255,255,0.96);
-      border-radius:12px;
-      padding:18px;
+      border-radius: 12px;
+      padding: 18px;
       box-shadow: 0 8px 28px rgba(0,0,0,0.06);
     }
 
-    
     .cart-grid {
       display: grid;
       grid-template-columns: 1fr 320px;
       gap: 20px;
-      align-items:start;
+      align-items: start;
     }
 
-    
     .items {
-      display:flex;
-      flex-direction:column;
-      gap:14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
     .item {
-      display:flex;
-      gap:14px;
-      padding:12px;
-      border-radius:10px;
+      display: flex;
+      gap: 14px;
+      padding: 12px;
+      border-radius: 10px;
       background: #fff;
       border: 1px solid rgba(200,170,180,0.15);
-      align-items:center;
+      align-items: center;
     }
 
     .thumb {
-      width:100px;
-      height:100px;
-      border-radius:8px;
-      background-size:cover;
-      background-position:center;
-      flex-shrink:0;
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
       box-shadow: 0 6px 16px rgba(179,94,112,0.06);
     }
 
     .info {
-      flex:1;
-      min-width:0;
+      flex: 1;
+      min-width: 0;
     }
-    .info h3 { margin:0 0 6px 0; font-size:18px; color:#812b46; }
-    .info p.desc { margin:0 0 8px 0; color:#6b4a50; font-size:14px; }
+
+    .info h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      color: #812b46;
+    }
+
+    .info p.desc {
+      margin: 0 0 8px;
+      color: #6b4a50;
+      font-size: 14px;
+    }
 
     .meta {
-      display:flex;
-      gap:8px;
-      align-items:center;
-      margin-top:6px;
-      flex-wrap:wrap;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 6px;
+      flex-wrap: wrap;
     }
 
     select.size {
-      padding:6px 8px;
-      border-radius:6px;
-      border:1px solid #e6d7db;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid #e6d7db;
       font-family: "Times New Roman", serif;
     }
 
     .qty {
-      display:flex;
-      align-items:center;
-      gap:8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
+
     .qty button {
-      width:30px; height:30px; border-radius:6px; border:none;
-      background:#f2c6cf; color:#812b46; cursor:pointer;
-      font-weight:700;
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      border: none;
+      background: #f2c6cf;
+      color: #812b46;
+      cursor: pointer;
+      font-weight: 700;
     }
-    .qty input { width:46px; text-align:center; padding:6px; border-radius:6px; border:1px solid #e6d7db; }
+
+    .qty input {
+      width: 46px;
+      text-align: center;
+      padding: 6px;
+      border-radius: 6px;
+      border: 1px solid #e6d7db;
+    }
 
     .right {
-      display:flex;
-      flex-direction:column;
-      gap:14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
     .price {
-      font-size:16px;
-      font-weight:700;
-      color:#4a2b33;
+      font-size: 16px;
+      font-weight: 700;
+      color: #4a2b33;
     }
 
     .remove {
-      background:transparent;
-      border:none;
-      color:#b04a4a;
-      cursor:pointer;
-      font-size:14px;
+      background: transparent;
+      border: none;
+      color: #b04a4a;
+      cursor: pointer;
+      font-size: 14px;
     }
 
-    
     .summary {
-      background: linear-gradient(180deg,#fff 0%, #fff 60%, #fff);
-      padding:18px;
-      border-radius:10px;
-      border:1px solid rgba(200,170,180,0.12);
+      background: #fff;
+      padding: 18px;
+      border-radius: 10px;
+      border: 1px solid rgba(200,170,180,0.12);
     }
-    .summary h4 { margin:0 0 10px 0; color:#812b46; }
-    .summary .row { display:flex; justify-content:space-between; margin:8px 0; color:#4a2b33; }
-    .total { font-size:20px; font-weight:700; color:#812b46; margin-top:8px; }
+
+    .summary h4 {
+      margin: 0 0 10px;
+      color: #812b46;
+    }
+
+    .summary .row {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 0;
+      color: #4a2b33;
+    }
+
+    .total {
+      font-size: 20px;
+      font-weight: 700;
+      color: #812b46;
+      margin-top: 8px;
+    }
 
     .btn {
-      display:inline-block;
-      width:100%;
-      padding:12px;
-      background:#812b46;
-      color:white;
-      text-align:center;
-      border-radius:8px;
-      border:none;
-      cursor:pointer;
+      display: inline-block;
+      width: 100%;
+      padding: 12px;
+      background: #812b46;
+      color: white;
+      text-align: center;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
       font-family: "Times New Roman", serif;
-      font-size:16px;
-      text-decoration:none;
+      font-size: 16px;
+      text-decoration: none;
     }
 
-    .muted { color:#7a5b61; font-size:13px; text-align:center; }
+    .muted {
+      color: #7a5b61;
+      font-size: 13px;
+      text-align: center;
+    }
 
-    
     .empty {
-      text-align:center; padding:30px 10px; color:#6b4a50;
+      text-align: center;
+      padding: 30px 10px;
+      color: #6b4a50;
     }
 
     @media (max-width: 920px) {
-      .cart-grid { grid-template-columns: 1fr; }
-      .right { order:2; }
+      .cart-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .right {
+        order: 2;
+      }
     }
   </style>
 </head>
-<body>
 
+<body>
   <div class="container">
     <div class="top">
       <div>
@@ -174,56 +236,86 @@
 
     <div class="card">
       <div class="cart-grid">
-        <!-- LEFT: items -->
         <div>
-          <div class="items" id="itemsList">
-            <!-- items  -->
-          </div>
+          <div class="items" id="itemsList"></div>
 
           <div id="emptyHint" class="empty" style="display:none;">
-            Your basket is empty. Visit <a href="SHOP.html">Shop</a> Add item.
+            Your basket is empty. Visit
+            <a href="SHOP.html">Shop</a> to add items.
           </div>
         </div>
 
-        
         <aside class="right">
           <div class="summary" aria-live="polite">
             <h4>Order Summary</h4>
-            <div class="row"><span>Items</span><span id="summaryCount">0</span></div>
-            <div class="row"><span>Subtotal</span><span id="summarySubtotal">IDR 0</span></div>
-            <div class="row"><span>Shipping</span><span id="summaryShipping">IDR 5</span></div>
-            <div class="row total"><span>Total</span><span id="summaryTotal">IDR 0</span></div>
+            <div class="row">
+              <span>Items</span>
+              <span id="summaryCount">0</span>
+            </div>
+            <div class="row">
+              <span>Subtotal</span>
+              <span id="summarySubtotal">IDR 0</span>
+            </div>
+            <div class="row">
+              <span>Shipping</span>
+              <span id="summaryShipping">IDR 0</span>
+            </div>
+            <div class="row total">
+              <span>Total</span>
+              <span id="summaryTotal">IDR 0</span>
+            </div>
           </div>
 
-          <button id="checkoutBtn" class="btn">Add item</button>
-          <a href="KATALOG.html" class="btn" style="background:#d47a8c; margin-top:8px; text-decoration:none;">Continue Shopping</a>
+          <button id="checkoutBtn" class="btn">Checkout</button>
+
+          <a href="KATALOG.html" class="btn"
+             style="background:#d47a8c; margin-top:8px;">
+            Continue Shopping
+          </a>
         </aside>
       </div>
     </div>
   </div>
 
-  <!--jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
- 
   <script>
-    $(function(){
+    $(function () {
       const $itemsList = $('#itemsList');
       const $emptyHint = $('#emptyHint');
-      const SHIPPING = 5; // IDR 5
+      const SHIPPING = 5;
 
-      
       function loadCart() {
         try {
           const raw = localStorage.getItem('cart');
-          if (raw) {
-            return JSON.parse(raw);
+
+          if (raw !== null) {
+            const parsed = JSON.parse(raw);
+            return Array.isArray(parsed) ? parsed : [];
           }
-        } catch(e){}
-        
+        } catch (e) {
+          console.error('Unable to load cart:', e);
+        }
+
         return [
-          { id: 'p1', name: 'Pink Ruffle Blouse', desc: 'Soft cotton ruffle blouse', price: 139000, size: 'M', qty: 1, img: 'https://i.pinimg.com/736x/69/09/28/690928efb7bce2ab96dca2ca601ecdb4.jpg' },
-          { id: 'p2', name: 'Sweet Pink Dress', desc: 'Flowy midi dress', price: 45000, size: 'S', qty: 2, img: 'https://i.pinimg.com/736x/69/09/28/690928efb7bce2ab96dca2ca601ecdb4.jpg' }
+          {
+            id: 'p1',
+            name: 'Pink Ruffle Blouse',
+            desc: 'Soft cotton ruffle blouse',
+            price: 139000,
+            size: 'M',
+            qty: 1,
+            img: 'https://i.pinimg.com/736x/69/09/28/690928efb7bce2ab96dca2ca601ecdb4.jpg'
+          },
+          {
+            id: 'p2',
+            name: 'Sweet Pink Dress',
+            desc: 'Flowy midi dress',
+            price: 45000,
+            size: 'S',
+            qty: 2,
+            img: 'https://i.pinimg.com/736x/69/09/28/690928efb7bce2ab96dca2ca601ecdb4.jpg'
+          }
         ];
       }
 
@@ -232,26 +324,41 @@
       function saveCart() {
         try {
           localStorage.setItem('cart', JSON.stringify(cart));
-        } catch(e) {
-          
+        } catch (e) {
+          console.error('Unable to save cart:', e);
         }
       }
 
-      function currencyIDR(n) {
-        
-        return 'IDR ' + Number(n).toLocaleString('id-ID');
+      function currencyIDR(amount) {
+        return 'IDR ' + Number(amount).toLocaleString('id-ID');
+      }
+
+      function escapeHtml(value) {
+        if (value == null) return '';
+
+        return String(value).replace(/[&<>"']/g, function (character) {
+          return {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+          }[character];
+        });
       }
 
       function render() {
         $itemsList.empty();
+
         if (!cart || cart.length === 0) {
           $emptyHint.show();
         } else {
           $emptyHint.hide();
-          cart.forEach(item => {
+
+          cart.forEach(function (item) {
             const $item = $(`
-              <div class="item" data-id="${item.id}">
-                <div class="thumb" style="background-image:url('${item.img}');"></div>
+              <div class="item">
+                <div class="thumb"></div>
 
                 <div class="info">
                   <h3>${escapeHtml(item.name)}</h3>
@@ -261,65 +368,69 @@
                     <label>
                       Size:
                       <select class="size" aria-label="Choose size">
-                        <option ${item.size==='XS'?'selected':''}>XS</option>
-                        <option ${item.size==='S'?'selected':''}>S</option>
-                        <option ${item.size==='M'?'selected':''}>M</option>
-                        <option ${item.size==='L'?'selected':''}>L</option>
-                        <option ${item.size==='XL'?'selected':''}>XL</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
                       </select>
                     </label>
 
                     <div class="qty" style="margin-left:10px;">
-                      <button class="dec" title="Decrease">-</button>
-                      <input type="number" min="1" class="qty-input" value="${item.qty}" />
-                      <button class="inc" title="Increase">+</button>
+                      <button type="button" class="dec" title="Decrease">-</button>
+                      <input type="number" min="1" class="qty-input"
+                             value="${Math.max(1, Number(item.qty) || 1)}" />
+                      <button type="button" class="inc" title="Increase">+</button>
                     </div>
 
                     <div style="margin-left:auto; text-align:right;">
                       <div class="price">${currencyIDR(item.price)}</div>
-                      <div style="font-size:13px; color:#6b4a50;">Subtotal: ${currencyIDR(item.price * item.qty)}</div>
-                      <button class="remove">Remove</button>
+                      <div class="item-subtotal"
+                           style="font-size:13px; color:#6b4a50;">
+                        Subtotal: ${currencyIDR(item.price * item.qty)}
+                      </div>
+                      <button type="button" class="remove">Remove</button>
                     </div>
                   </div>
                 </div>
               </div>
             `);
 
-            
-            $item.find('.size').on('change', function(){
-              const val = $(this).val();
-              item.size = val;
+            $item.find('.thumb').css(
+              'background-image',
+              'url("' + String(item.img || '').replace(/["\\]/g, '') + '")'
+            );
+
+            $item.find('.size').val(item.size || 'M');
+
+            $item.find('.size').on('change', function () {
+              item.size = $(this).val();
               saveCart();
             });
 
-            
-            $item.find('.inc').on('click', function(){
-              item.qty = Number(item.qty) + 1;
-              $item.find('.qty-input').val(item.qty);
-              saveCart();
-              render(); 
-            });
-            $item.find('.dec').on('click', function(){
-              if (item.qty > 1) {
-                item.qty = Number(item.qty) - 1;
-                $item.find('.qty-input').val(item.qty);
-                saveCart();
-                render();
-              }
-            });
-
-            
-            $item.find('.qty-input').on('change', function(){
-              let v = parseInt($(this).val()) || 1;
-              if (v < 1) v = 1;
-              item.qty = v;
+            $item.find('.inc').on('click', function () {
+              item.qty = (Number(item.qty) || 1) + 1;
               saveCart();
               render();
             });
 
-            
-            $item.find('.remove').on('click', function(){
-              cart = cart.filter(i => i.id !== item.id);
+            $item.find('.dec').on('click', function () {
+              item.qty = Math.max(1, (Number(item.qty) || 1) - 1);
+              saveCart();
+              render();
+            });
+
+            $item.find('.qty-input').on('change', function () {
+              item.qty = Math.max(1, parseInt($(this).val(), 10) || 1);
+              saveCart();
+              render();
+            });
+
+            $item.find('.remove').on('click', function () {
+              cart = cart.filter(function (cartItem) {
+                return cartItem.id !== item.id;
+              });
+
               saveCart();
               render();
             });
@@ -332,31 +443,31 @@
       }
 
       function updateSummary() {
-        const count = cart.reduce((s,i)=> s + Number(i.qty),0);
-        const subtotal = cart.reduce((s,i)=> s + i.price * i.qty,0);
+        const count = cart.reduce(function (sum, item) {
+          return sum + (Number(item.qty) || 0);
+        }, 0);
+
+        const subtotal = cart.reduce(function (sum, item) {
+          return sum + (Number(item.price) || 0) * (Number(item.qty) || 0);
+        }, 0);
+
         $('#summaryCount').text(count);
         $('#summarySubtotal').text(currencyIDR(subtotal));
-        $('#summaryShipping').text(currencyIDR(cart.length ? SHIPPING : 0));
-        $('#summaryTotal').text(currencyIDR(subtotal + (cart.length ? SHIPPING : 0)));
+
+        const shipping = cart.length ? SHIPPING : 0;
+        $('#summaryShipping').text(currencyIDR(shipping));
+        $('#summaryTotal').text(currencyIDR(subtotal + shipping));
       }
 
-      // Checkout
-      $('#checkoutBtn').on('click', function(){
+      $('#checkoutBtn').on('click', function () {
         if (!cart || cart.length === 0) {
           alert('Keranjang kosong. Tambahkan item dulu sebelum checkout.');
           return;
         }
-       
-        window.location.href = 'SHOP.html';
+
+        window.location.href = 'PICKUP.html';
       });
 
-      
-      function escapeHtml(s) {
-        if (!s) return '';
-        return String(s).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]; });
-      }
-
-      
       render();
     });
   </script>
